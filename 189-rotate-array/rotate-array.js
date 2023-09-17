@@ -4,28 +4,17 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function(nums, k) {
-    let n = nums.length;
-    k = k%n;
-    if (k === 0 || n === 0 || n === k) {
-        return;
-    }
-    
-    let start=0;
-    let count=0;
-    let current = start;
-    let prev = nums[start]
-    
-    while(count<n){
-        current = (current+k)%n;
-        var temp = nums[current];
-        nums[current] = prev;
-        prev = temp;
-        count++;
-        
-        if(current === start){
-            start++;
-            current = start;
-            prev = nums[start];
+    k = k%nums.length;
+    const reverse = (start,end)=>{
+        while(start<end){
+        let temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
+        start++;
+        end--;
         }
     }
+    reverse(0,nums.length-1);
+    reverse(0,k-1);
+    reverse(k,nums.length-1);
 };
