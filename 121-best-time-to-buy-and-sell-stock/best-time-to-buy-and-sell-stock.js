@@ -3,19 +3,11 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let s=0;
+    let min=Number.MAX_VALUE
     let maxProfit=0;
-    let e=1;
-    while(e<prices.length){
-        if(prices[s]<prices[e]){
-            let profit = prices[e]-prices[s]
-            maxProfit  = Math.max(maxProfit,profit)
-            e++
-        }
-        else{
-            s=e;
-            e++
-        }
+    for(let i=0; i<prices.length; i++){
+        min = Math.min(min,prices[i])
+        maxProfit=Math.max(maxProfit,prices[i]-min)
     }
     return maxProfit
 };
